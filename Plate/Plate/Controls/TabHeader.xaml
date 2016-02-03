@@ -1,0 +1,127 @@
+﻿<UserControl
+    x:Class="Plate.Controls.TabHeader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Plate.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <local:QuadrantVisibilityConverter x:Key="QuadrantVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <!--Visual States-->
+    <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+
+            <!--Narrow-->
+            <VisualState x:Name="Narrow">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="0" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter Target="Plate.(RelativePanel.AlignHorizontalCenterWithPanel)" Value="True" />
+                    <Setter Target="LabelTextBlock.(RelativePanel.Below)" Value="Plate" />
+                    <Setter Target="LabelTextBlock.(RelativePanel.AlignHorizontalCenterWith)" Value="Plate" />
+                    <Setter Target="LabelTextBlock.Width" Value="55"/>
+                    <Setter Target="RelativePanel.Margin" Value="0,0,0,0"/>
+                </VisualState.Setters>
+            </VisualState>
+
+            <!--Wide-->
+            <VisualState x:Name="Wide">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="700" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                    <Setter Target="Plate.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True" />
+                    <Setter Target="LabelTextBlock.(RelativePanel.RightOf)" Value="Plate" />
+                    <Setter Target="LabelTextBlock.(RelativePanel.AlignVerticalCenterWith)" Value="Plate" />
+                    <Setter Target="RelativePanel.Margin" Value="0,0,12,0"/>
+                    <Setter Target="Plate.Margin" Value="0,0,0,0"/>
+                </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+
+    <!--Content-->
+    <RelativePanel x:Name="RelativePanel">
+        <!--Plate-->
+        <Canvas x:Name="Plate"
+                Height="40"
+                Width="40"
+                HorizontalAlignment="Center">
+            <Ellipse Fill="Transparent"
+                     Height="40"
+                     Width="40"
+                     Stroke="#969696"
+                     StrokeThickness="3"/>
+            <Ellipse Fill="#969696"
+                     Height="30"
+                     Width="30"
+                     Stroke="#969696"
+                     Margin="5,5,0,0"/>
+
+            <!--Quadrant 1-->
+            <Path Fill="{StaticResource Quad1Color}"
+                  Data="M20,20 L5,20 A15,15 0 0 1 20,5 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=1}"/>
+            <Path Fill="{StaticResource Quad1Color}"
+                  Data="M0,20 A20,20 0 0 1 20,0 L20,3 A17,17 0 0 0 3,20 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=1}"/>
+
+            <!--Quadrant 2-->
+            <Path Fill="{StaticResource Quad2Color}"
+                  Data="M20,20 L20,5 A15,15 0 0 1 35,20 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=2}"/>
+            <Path Fill="{StaticResource Quad2Color}"
+                  Data="M20,0 A20,20 0 0 1 40,20 L37,20 A17,17 0 0 0 20,3 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=2}"/>
+
+            <!--Quadrant 3-->
+            <Path Fill="{StaticResource Quad3Color}"
+                  Data="M20,20 L20,35 A15,15 0 0 1 5,20 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=3}"/>
+            <Path Fill="{StaticResource Quad3Color}"
+                  Data="M20,40 A20,20 0 0 1 0,20 L3,20 A17,17 0 0 0 20,37 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=3}"/>
+
+            <!--Quadrant 4-->
+            <Path Fill="{StaticResource Quad4Color}"
+                  Data="M20,20 L35,20 A15,15 0 0 1 20,35 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=4}"/>
+            <Path Fill="{StaticResource Quad4Color}"
+                  Data="M40,20 A20,20 0 0 1 20,40 L20,37 A17,17 0 0 0 37,20 z"
+                  Visibility="{Binding Quadrant,
+                               Converter={StaticResource QuadrantVisibilityConverter},
+                               ConverterParameter=4}"/>
+        </Canvas>
+
+        <!--Label-->
+        <TextBlock x:Name="LabelTextBlock"
+                   Text="{Binding Label}"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center"
+                   FontFamily="Segoe UI"
+                   FontWeight="SemiBold"
+                   FontSize="10"
+                   Foreground="{StaticResource AppBarItemForegroundThemeBrush}"/>
+    </RelativePanel>
+</UserControl>
