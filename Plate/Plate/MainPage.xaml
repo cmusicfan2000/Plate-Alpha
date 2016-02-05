@@ -5,6 +5,7 @@
     xmlns:local="using:Plate"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Plate.Controls"
     mc:Ignorable="d">
 
     <!--Main Stackpanel-->
@@ -34,15 +35,12 @@
             </Pivot.Background>
 
             <!--Short Term Goals-->
-            <PivotItem x:Name="ShortTermGoals_PivotItem"
-                       Header="Short Term Goals">
-                <!--
+            <PivotItem x:Name="ShortTermGoals_PivotItem">
                 <PivotItem.Header>
                     <controls:TabHeader Label="Short Term Goals"
         				                Quadrant="1"
                                         Margin="0,2,0,0"/>
                 </PivotItem.Header>
-                -->
 
                 <!--Pivot item content-->
                 <!--
@@ -51,10 +49,8 @@
                 </ListView>
                 -->
 
-                <StackPanel Background="Transparent">
-                    <StackPanel>
-                        <TextBlock Text="Get Oil Changed"/>
-                    </StackPanel>
+                <StackPanel Background="Black">
+                    <TextBlock Text="Get Oil Changed"/>
                 </StackPanel>
             </PivotItem>
 
