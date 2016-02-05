@@ -7,7 +7,124 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <!--Main Stackpanel-->
+    <StackPanel>
+        <StackPanel.Background>
+            <SolidColorBrush Color="{StaticResource SystemAltHighColor}"/>
+        </StackPanel.Background>
 
-    </Grid>
+        <!--Plate Identifier-->
+        <Grid Background="Red"
+              Margin="0">
+            <TextBlock Text="Plate Name"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource SubtitleTextBlockStyle}"/>
+        </Grid>
+
+        <!--Tab Control-->
+        <Pivot HorizontalContentAlignment="Center">
+
+            <!--
+            <Pivot.Style>
+                <StaticResource ResourceKey="PlatePivotStyle"/>
+            </Pivot.Style>
+            -->
+            <Pivot.Background>
+                <SolidColorBrush Color="{StaticResource SystemChromeMediumColor}"/>
+            </Pivot.Background>
+
+            <!--Short Term Goals-->
+            <PivotItem x:Name="ShortTermGoals_PivotItem">
+                <!--
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Short Term Goals"
+        				                Quadrant="1"
+                                        Margin="0,2,0,0"/>
+                </PivotItem.Header>
+                -->
+
+                <!--Pivot item content-->
+                <!--
+                <ListView>
+                    
+                </ListView>
+                -->
+
+                <StackPanel Background="Transparent">
+                    <StackPanel>
+                        <TextBlock Text="Get Oil Changed"/>
+                    </StackPanel>
+                </StackPanel>
+            </PivotItem>
+
+            <!--Long term Goals-->
+            <PivotItem x:Name="LongTermGoals_PivotItem">
+                <!--
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Long Term Goals"
+        				                Quadrant="2"
+                                        Margin="0,2,0,0"/>
+                </PivotItem.Header>
+                -->
+            </PivotItem>
+
+            <!--Distractions-->
+            <PivotItem x:Name="Distractions_PivotItem">
+                <!--
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Distractions"
+        				                Quadrant="3"
+                                        Margin="0,2,0,0"/>
+                </PivotItem.Header>
+                -->
+            </PivotItem>
+
+            <!--Time Wasterss-->
+            <PivotItem x:Name="TimeWasters_PivotItem">
+                <!--
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Time Wasters"
+        				                Quadrant="4"
+                                        Margin="0,2,0,0"/>
+                </PivotItem.Header>
+                -->
+            </PivotItem>
+
+            <!--Summary-->
+            <PivotItem x:Name="Summary_PivotItem">
+                <!--
+                <PivotItem.Header>
+                    <controls:TabHeader Label="Summary"
+        				                Quadrant="5"
+                                        Margin="0,2,0,0"/>
+                </PivotItem.Header>
+                -->
+            </PivotItem>
+        </Pivot>
+    </StackPanel>
+
+    <!--Command Bar-->
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Name="Settings"
+                          Icon="Setting"
+                          Label="Settings"
+                          IsCompact="False"/>
+            <AppBarButton Name="Tasks"
+                          Icon="Accept"
+                          Label="Complete Tasks"
+                          IsCompact="False"/>
+            <AppBarButton Name="Plates"
+                          Label="Plates"
+                          IsCompact="False">
+                <AppBarButton.Icon>
+                    <BitmapIcon UriSource="/Assets/Plates.png"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Name="AddTask"
+                          Icon="Add"
+                          Label="Add"
+                          IsCompact="False"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
