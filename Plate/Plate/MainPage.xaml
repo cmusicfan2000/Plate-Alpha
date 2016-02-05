@@ -34,7 +34,8 @@
             </Pivot.Background>
 
             <!--Short Term Goals-->
-            <PivotItem x:Name="ShortTermGoals_PivotItem">
+            <PivotItem x:Name="ShortTermGoals_PivotItem"
+                       Header="Short Term Goals">
                 <!--
                 <PivotItem.Header>
                     <controls:TabHeader Label="Short Term Goals"
@@ -58,7 +59,8 @@
             </PivotItem>
 
             <!--Long term Goals-->
-            <PivotItem x:Name="LongTermGoals_PivotItem">
+            <PivotItem x:Name="LongTermGoals_PivotItem"
+                       Header="Long Term Goals">
                 <!--
                 <PivotItem.Header>
                     <controls:TabHeader Label="Long Term Goals"
@@ -69,7 +71,8 @@
             </PivotItem>
 
             <!--Distractions-->
-            <PivotItem x:Name="Distractions_PivotItem">
+            <PivotItem x:Name="Distractions_PivotItem"
+                       Header="Distractions">
                 <!--
                 <PivotItem.Header>
                     <controls:TabHeader Label="Distractions"
@@ -80,7 +83,8 @@
             </PivotItem>
 
             <!--Time Wasterss-->
-            <PivotItem x:Name="TimeWasters_PivotItem">
+            <PivotItem x:Name="TimeWasters_PivotItem"
+                       Header="Time Wasters">
                 <!--
                 <PivotItem.Header>
                     <controls:TabHeader Label="Time Wasters"
