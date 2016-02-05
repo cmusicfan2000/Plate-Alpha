@@ -98,6 +98,24 @@
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
+                                <VisualStateGroup x:Name="WindowsStates">
+                                    <VisualState x:Name="Wide">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="500" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Target="HeaderClipper.HorizontalContentAlignment" Value="Stretch" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Narrow">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="0" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Target="HeaderClipper.HorizontalContentAlignment" Value="Center" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <ContentControl x:Name="TitleContentControl" ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" IsTabStop="False" Margin="{StaticResource PivotPortraitThemePadding}" Style="{StaticResource TitleContentControlStyle}" Visibility="Collapsed"/>
                             <Grid Grid.Row="1">
@@ -376,12 +394,6 @@
             <Pivot.Style>
                 <StaticResource ResourceKey="PivotStyleDynamicHeader"/>
             </Pivot.Style>
-
-            <!--
-            <Pivot.Style>
-                <StaticResource ResourceKey="PlatePivotStyle"/>
-            </Pivot.Style>
-            -->
             <Pivot.Background>
                 <SolidColorBrush Color="{StaticResource SystemChromeMediumColor}"/>
             </Pivot.Background>
@@ -390,8 +402,7 @@
             <PivotItem x:Name="ShortTermGoals_PivotItem">
                 <PivotItem.Header>
                     <controls:TabHeader Label="Short Term Goals"
-        				                Quadrant="1"
-                                        Margin="0,2,0,0"/>
+        				                Quadrant="1"/>
                 </PivotItem.Header>
 
                 <!--Pivot item content-->
@@ -400,57 +411,42 @@
                     
                 </ListView>
                 -->
-
-                <StackPanel Background="Black">
+                
+                <!--<StackPanel Background="Blue">
                     <TextBlock Text="Get Oil Changed"/>
-                </StackPanel>
+                </StackPanel>-->
             </PivotItem>
 
             <!--Long term Goals-->
-            <PivotItem x:Name="LongTermGoals_PivotItem"
-                       Header="Long Term Goals">
-                <!--
+            <PivotItem x:Name="LongTermGoals_PivotItem">
                 <PivotItem.Header>
                     <controls:TabHeader Label="Long Term Goals"
-        				                Quadrant="2"
-                                        Margin="0,2,0,0"/>
+        				                Quadrant="2"/>
                 </PivotItem.Header>
-                -->
             </PivotItem>
 
             <!--Distractions-->
-            <PivotItem x:Name="Distractions_PivotItem"
-                       Header="Distractions">
-                <!--
+            <PivotItem x:Name="Distractions_PivotItem">
                 <PivotItem.Header>
                     <controls:TabHeader Label="Distractions"
-        				                Quadrant="3"
-                                        Margin="0,2,0,0"/>
+        				                Quadrant="3"/>
                 </PivotItem.Header>
-                -->
             </PivotItem>
 
             <!--Time Wasterss-->
-            <PivotItem x:Name="TimeWasters_PivotItem"
-                       Header="Time Wasters">
-                <!--
+            <PivotItem x:Name="TimeWasters_PivotItem">
                 <PivotItem.Header>
                     <controls:TabHeader Label="Time Wasters"
-        				                Quadrant="4"
-                                        Margin="0,2,0,0"/>
+        				                Quadrant="4"/>
                 </PivotItem.Header>
-                -->
             </PivotItem>
 
             <!--Summary-->
             <PivotItem x:Name="Summary_PivotItem">
-                <!--
                 <PivotItem.Header>
                     <controls:TabHeader Label="Summary"
-        				                Quadrant="5"
-                                        Margin="0,2,0,0"/>
+        				                Quadrant="5"/>
                 </PivotItem.Header>
-                -->
             </PivotItem>
         </Pivot>
     </StackPanel>
