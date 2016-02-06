@@ -31,8 +31,8 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="Plate.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True" />
-                        <Setter Target="LabelTextBlock.(RelativePanel.RightOf)" Value="Plate" />
-                        <Setter Target="LabelTextBlock.(RelativePanel.AlignVerticalCenterWith)" Value="Plate" />
+                        <Setter Target="LabelText.(RelativePanel.RightOf)" Value="Plate" />
+                        <Setter Target="LabelText.(RelativePanel.AlignVerticalCenterWith)" Value="Plate" />
                         <Setter Target="RelativePanel.Margin" Value="0,5,12,0"/>
                         <Setter Target="Plate.Margin" Value="0,0,3,0"/>
                     </VisualState.Setters>
@@ -45,8 +45,8 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="Plate.(RelativePanel.AlignHorizontalCenterWithPanel)" Value="True" />
-                        <Setter Target="LabelTextBlock.(RelativePanel.Below)" Value="Plate" />
-                        <Setter Target="LabelTextBlock.(RelativePanel.AlignHorizontalCenterWith)" Value="Plate" />
+                        <Setter Target="LabelText.(RelativePanel.Below)" Value="Plate" />
+                        <Setter Target="LabelText.(RelativePanel.AlignHorizontalCenterWith)" Value="Plate" />
                         <Setter Target="LabelTextBlock.Width" Value="55"/>
                         <!--<Setter Target="RelativePanel.Width" Value="55"/>-->
                         <Setter Target="RelativePanel.Margin" Value="0,5,0,0"/>
@@ -123,22 +123,31 @@
                                ConverterParameter=4}"/>
                 
                 <!--Selection Circle-->
-                <!--<Path Fill="{StaticResource }"-->
+                <Ellipse Fill="Transparent"
+                         Height="40"
+                         Width="40"
+                         Stroke="{ThemeResource HighlightColor}"
+                         StrokeThickness="1"
+                         Visibility="{Binding IsSelected}"/>
             </Canvas>
 
             <!--Label-->
-            <TextBlock x:Name="LabelTextBlock"
-                   Text="{Binding Label}"
-                   TextWrapping="Wrap"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   TextAlignment="Center"
-                   FontFamily="Segoe UI"
-                   FontWeight="SemiBold"
-                   FontSize="10"
-                   Foreground="{StaticResource AppBarItemForegroundThemeBrush}"
-                   Margin="0"
-                   Height="28"/>
+            <Border x:Name="LabelText"
+                    BorderBrush="{ThemeResource HighlightColor}"
+                    BorderThickness="0,0,0,1"
+                    Visibility="{Binding IsSelected}">
+                <TextBlock x:Name="LabelTextBlock"
+                           Text="{Binding Label}"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"
+                           FontFamily="Segoe UI"
+                           FontWeight="SemiBold"
+                           FontSize="10"
+                           Foreground="{StaticResource AppBarItemForegroundThemeBrush}"
+                           Height="28"/>
+            </Border>
         </RelativePanel>
     </Grid>
 </UserControl>
