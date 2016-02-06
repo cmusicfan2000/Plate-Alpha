@@ -57,9 +57,35 @@
                                 Tapped="TabHeader_Tapped"/>
         </Grid>
 
+        <!--Content-->
         <TextBox Background="Green"
                  Text="Content goes here"
                  Grid.Row="1"/>
 
     </Grid>
+
+    <!--Command Bar-->
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Name="Settings"
+                          Icon="Setting"
+                          Label="Settings"
+                          IsCompact="False"/>
+            <AppBarButton Name="Tasks"
+                          Icon="Accept"
+                          Label="Complete Tasks"
+                          IsCompact="False"/>
+            <AppBarButton Name="Plates"
+                          Label="Plates"
+                          IsCompact="False">
+                <AppBarButton.Icon>
+                    <BitmapIcon UriSource="/Assets/Plates.png"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Name="AddTask"
+                          Icon="Add"
+                          Label="Add"
+                          IsCompact="False"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
