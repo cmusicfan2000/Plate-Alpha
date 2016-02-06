@@ -48,7 +48,6 @@
                         <Setter Target="LabelText.(RelativePanel.Below)" Value="Plate" />
                         <Setter Target="LabelText.(RelativePanel.AlignHorizontalCenterWith)" Value="Plate" />
                         <Setter Target="LabelTextBlock.Width" Value="55"/>
-                        <!--<Setter Target="RelativePanel.Width" Value="55"/>-->
                         <Setter Target="RelativePanel.Margin" Value="0,5,0,0"/>
                     </VisualState.Setters>
                 </VisualState>

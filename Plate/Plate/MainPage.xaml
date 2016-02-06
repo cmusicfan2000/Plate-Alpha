@@ -3,11 +3,48 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Plate"
+    xmlns:controls="using:Plate.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource SystemChromeMediumColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Headers-->
+        <Grid Background="{StaticResource SystemChromeMediumColor}"
+              Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <controls:TabHeader Label="Short Term Goals"
+                             Quadrant="1"
+                             Grid.Column="0"/>
+            <controls:TabHeader Label="Long Term Goals"
+                             Quadrant="2"
+                             Grid.Column="1"/>
+            <controls:TabHeader Label="Distractions"
+                             Quadrant="3"
+                             Grid.Column="2"/>
+            <controls:TabHeader Label="Time Wasters"
+                             Quadrant="4"
+                             Grid.Column="3"/>
+            <controls:TabHeader Label="Summary"
+                             Quadrant="5"
+                             Grid.Column="4"/>
+        </Grid>
+
+        <TextBox Background="Green"
+                 Text="Content goes here"
+                 Grid.Row="1"/>
 
     </Grid>
 </Page>
