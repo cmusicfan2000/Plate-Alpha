@@ -18,11 +18,13 @@
             <local:TabHeader Label="Short Term Goals"
                              Quadrant="1"/>
             <local:TabHeader Label="Long Term Goals"
-                             Quadrant="1"/>
+                             Quadrant="2"/>
             <local:TabHeader Label="Distractions"
-                             Quadrant="1"/>
+                             Quadrant="3"/>
             <local:TabHeader Label="Time Wasters"
-                             Quadrant="1"/>
+                             Quadrant="4"/>
+            <local:TabHeader Label="Summary"
+                             Quadrant="5"/>
         </StackPanel>
         
         

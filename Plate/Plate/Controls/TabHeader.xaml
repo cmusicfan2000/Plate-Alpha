@@ -127,14 +127,14 @@
                          Height="40"
                          Width="40"
                          Stroke="{ThemeResource HighlightColor}"
-                         StrokeThickness="1"
+                         StrokeThickness="2"
                          Visibility="{Binding IsSelected}"/>
             </Canvas>
 
             <!--Label-->
             <Border x:Name="LabelText"
                     BorderBrush="{ThemeResource HighlightColor}"
-                    BorderThickness="0,0,0,1"
+                    BorderThickness="0,0,0,2"
                     Visibility="{Binding IsSelected}">
                 <TextBlock x:Name="LabelTextBlock"
                            Text="{Binding Label}"
