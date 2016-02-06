@@ -25,26 +25,36 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <controls:TabHeader Label="Short Term Goals"
+            <controls:TabHeader x:Name="ShortTermGoals_Tab"
+                                Label="Short Term Goals"
                                 Quadrant="1"
                                 IsSelected="True"
-                                Grid.Column="0"/>
-            <controls:TabHeader Label="Long Term Goals"
-                                 Quadrant="2"
+                                Grid.Column="0"
+                                Tapped="TabHeader_Tapped"/>
+            <controls:TabHeader x:Name="LongTermGoals_Tab"
+                                Label="Long Term Goals"
+                                Quadrant="2"
                                 IsSelected="False"
-                                 Grid.Column="1"/>
-            <controls:TabHeader Label="Distractions"
-                                 Quadrant="3"
+                                Grid.Column="1"
+                                Tapped="TabHeader_Tapped"/>
+            <controls:TabHeader x:Name="Distractions_Tab"
+                                Label="Distractions"
+                                Quadrant="3"
                                 IsSelected="False"
-                                 Grid.Column="2"/>
-            <controls:TabHeader Label="Time Wasters"
-                                 Quadrant="4"
+                                Grid.Column="2"
+                                Tapped="TabHeader_Tapped"/>
+            <controls:TabHeader x:Name="TimeWasters_Tab"
+                                Label="Time Wasters"
+                                Quadrant="4"
                                 IsSelected="False"
-                                 Grid.Column="3"/>
-            <controls:TabHeader Label="Summary"
-                                 Quadrant="5"
+                                Grid.Column="3"
+                                Tapped="TabHeader_Tapped"/>
+            <controls:TabHeader x:Name="Summary_Tab"
+                                Label="Summary"
+                                Quadrant="5"
                                 IsSelected="False"
-                                 Grid.Column="4"/>
+                                Grid.Column="4"
+                                Tapped="TabHeader_Tapped"/>
         </Grid>
 
         <TextBox Background="Green"
