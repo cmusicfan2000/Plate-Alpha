@@ -8,14 +8,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource SystemChromeMediumColor}">
+    <Grid Background="{ThemeResource AppBarColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--Headers-->
-        <Grid Background="{StaticResource SystemChromeMediumColor}"
+        <Grid Background="{ThemeResource AppBarColor}"
               Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -26,20 +26,25 @@
             </Grid.ColumnDefinitions>
 
             <controls:TabHeader Label="Short Term Goals"
-                             Quadrant="1"
-                             Grid.Column="0"/>
+                                Quadrant="1"
+                                IsSelected="True"
+                                Grid.Column="0"/>
             <controls:TabHeader Label="Long Term Goals"
-                             Quadrant="2"
-                             Grid.Column="1"/>
+                                 Quadrant="2"
+                                IsSelected="False"
+                                 Grid.Column="1"/>
             <controls:TabHeader Label="Distractions"
-                             Quadrant="3"
-                             Grid.Column="2"/>
+                                 Quadrant="3"
+                                IsSelected="False"
+                                 Grid.Column="2"/>
             <controls:TabHeader Label="Time Wasters"
-                             Quadrant="4"
-                             Grid.Column="3"/>
+                                 Quadrant="4"
+                                IsSelected="False"
+                                 Grid.Column="3"/>
             <controls:TabHeader Label="Summary"
-                             Quadrant="5"
-                             Grid.Column="4"/>
+                                 Quadrant="5"
+                                IsSelected="False"
+                                 Grid.Column="4"/>
         </Grid>
 
         <TextBox Background="Green"

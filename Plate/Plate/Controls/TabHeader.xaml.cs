@@ -41,22 +41,15 @@ namespace Plate.Controls
             get { return _IsSelected; }
             set
             {
-                // IF the value is changing
-                // - Set the private property
-                // - Set the dependancy property
-                // ENDIF
-                if (value != _IsSelected)
-                {
-                    _IsSelected = value;
+                _IsSelected = value;
 
-                    if (value == true)
-                    {
-                        SetValue(IsSelectedProperty, Visibility.Visible);
-                    }
-                    else
-                    {
-                        SetValue(IsSelectedProperty, Visibility.Collapsed);
-                    }
+                if (value == true)
+                {
+                    SetValue(IsSelectedProperty, Visibility.Visible);
+                }
+                else
+                {
+                    SetValue(IsSelectedProperty, Visibility.Collapsed);
                 }
             }
         }

@@ -31,8 +31,10 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="Plate.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True" />
-                        <Setter Target="LabelText.(RelativePanel.RightOf)" Value="Plate" />
-                        <Setter Target="LabelText.(RelativePanel.AlignVerticalCenterWith)" Value="Plate" />
+                        <Setter Target="LabelTextBlock.(RelativePanel.RightOf)" Value="Plate" />
+                        <Setter Target="LabelTextBlock.(RelativePanel.AlignVerticalCenterWith)" Value="Plate" />
+                        <Setter Target="SelectionLine.(RelativePanel.Below)" Value="LabelTextBlock" />
+                        <Setter Target="SelectionLine.(RelativePanel.AlignHorizontalCenterWith)" Value="LabelTextBlock" />
                         <Setter Target="RelativePanel.Margin" Value="0,5,12,0"/>
                         <Setter Target="Plate.Margin" Value="0,0,3,0"/>
                     </VisualState.Setters>
@@ -45,8 +47,10 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="Plate.(RelativePanel.AlignHorizontalCenterWithPanel)" Value="True" />
-                        <Setter Target="LabelText.(RelativePanel.Below)" Value="Plate" />
-                        <Setter Target="LabelText.(RelativePanel.AlignHorizontalCenterWith)" Value="Plate" />
+                        <Setter Target="LabelTextBlock.(RelativePanel.Below)" Value="Plate" />
+                        <Setter Target="LabelTextBlock.(RelativePanel.AlignHorizontalCenterWith)" Value="Plate" />
+                        <Setter Target="SelectionLine.(RelativePanel.Below)" Value="LabelTextBlock" />
+                        <Setter Target="SelectionLine.(RelativePanel.AlignHorizontalCenterWith)" Value="LabelTextBlock" />
                         <Setter Target="LabelTextBlock.Width" Value="55"/>
                         <Setter Target="RelativePanel.Margin" Value="0,5,0,0"/>
                     </VisualState.Setters>
@@ -131,22 +135,30 @@
             </Canvas>
 
             <!--Label-->
-            <Border x:Name="LabelText"
+            <TextBlock x:Name="LabelTextBlock"
+                        Text="{Binding Label}"
+                        TextWrapping="Wrap"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        TextAlignment="Center"
+                        FontFamily="Segoe UI"
+                        FontWeight="SemiBold"
+                        FontSize="10"
+                        Foreground="{StaticResource AppBarItemForegroundThemeBrush}"
+                        Height="28"/>
+            
+            <Canvas x:Name="SelectionLine"
+                    Width="55"
+                    Visibility="{Binding IsSelected}">
+                <Line Stroke="{ThemeResource HighlightColor}"
+                      StrokeThickness="2"
+                      X1="0"
+                      X2="55"/>
+            </Canvas>
+            <!--<Border x:Name="LabelText"
                     BorderBrush="{ThemeResource HighlightColor}"
                     BorderThickness="0,0,0,2"
-                    Visibility="{Binding IsSelected}">
-                <TextBlock x:Name="LabelTextBlock"
-                           Text="{Binding Label}"
-                           TextWrapping="Wrap"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           TextAlignment="Center"
-                           FontFamily="Segoe UI"
-                           FontWeight="SemiBold"
-                           FontSize="10"
-                           Foreground="{StaticResource AppBarItemForegroundThemeBrush}"
-                           Height="28"/>
-            </Border>
+                    Visibility="{Binding IsSelected}"/>-->
         </RelativePanel>
     </Grid>
 </UserControl>
