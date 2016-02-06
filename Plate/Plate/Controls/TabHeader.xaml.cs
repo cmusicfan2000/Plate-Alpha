@@ -12,6 +12,7 @@ namespace Plate.Controls
         // Dependency Properties
         public static readonly DependencyProperty LabelProperty = DependencyProperty.Register("Label", typeof(string), typeof(TabHeader), null);
         public static readonly DependencyProperty QuadrantProperty = DependencyProperty.Register("Quadrant", typeof(string), typeof(TabHeader), null);
+        public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register("IsSelected", typeof(Visibility), typeof(TabHeader), null);
 
         // ***** //
         // Labal //
@@ -29,6 +30,35 @@ namespace Plate.Controls
         {
             get { return GetValue(QuadrantProperty) as string; }
             set { SetValue(QuadrantProperty, value); }
+        }
+
+        // *********** //
+        // Is Selected //
+        // *********** //
+        private bool _IsSelected;
+        public bool IsSelected
+        {
+            get { return _IsSelected; }
+            set
+            {
+                // IF the value is changing
+                // - Set the private property
+                // - Set the dependancy property
+                // ENDIF
+                if (value != _IsSelected)
+                {
+                    _IsSelected = value;
+
+                    if (value == true)
+                    {
+                        SetValue(IsSelectedProperty, Visibility.Visible);
+                    }
+                    else
+                    {
+                        SetValue(IsSelectedProperty, Visibility.Collapsed);
+                    }
+                }
+            }
         }
 
         // ----------- //

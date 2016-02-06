@@ -10,9 +10,21 @@
     d:DesignWidth="400">
 
     <StackPanel>
+        
+        <!--Headers-->
         <StackPanel Orientation="Horizontal"
-                    x:Name="Tab_Headers">
-            
+                    x:Name="Tab_Headers"
+                    Background="{StaticResource SystemChromeMediumColor}">
+            <local:TabHeader Label="Short Term Goals"
+                             Quadrant="1"/>
+            <local:TabHeader Label="Long Term Goals"
+                             Quadrant="1"/>
+            <local:TabHeader Label="Distractions"
+                             Quadrant="1"/>
+            <local:TabHeader Label="Time Wasters"
+                             Quadrant="1"/>
         </StackPanel>
+        
+        
     </StackPanel>
 </UserControl>

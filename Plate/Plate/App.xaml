@@ -7,36 +7,37 @@
 
     <!-- Global Application Resources-->
     <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="/Resources/LightResources.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="/Resources/DarkResources.xaml" x:Key="Dark"/>
+                <ResourceDictionary Source="/Resources/HighContrastResources.xaml" x:Key="HighContrast"/>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+
         <!--Brushes-->
         <!--Reds-->
-        <SolidColorBrush x:Key="MyPlateRed1" Color="#BE4141"/>
+        <!--<SolidColorBrush x:Key="MyPlateRed1" Color="#BE4141"/>
         <SolidColorBrush x:Key="MyPlateRed2" Color="#8C3232"/>
-        <SolidColorBrush x:Key="MyPlateRed3" Color="#820000"/>
+        <SolidColorBrush x:Key="MyPlateRed3" Color="#820000"/>-->
 
         <!--Greens-->
-        <SolidColorBrush x:Key="MyPlateGreen1" Color="#41BE41"/>
+        <!--<SolidColorBrush x:Key="MyPlateGreen1" Color="#41BE41"/>
         <SolidColorBrush x:Key="MyPlateGreen2" Color="#328C32"/>
-        <SolidColorBrush x:Key="MyPlateGreen3" Color="#008200"/>
+        <SolidColorBrush x:Key="MyPlateGreen3" Color="#008200"/>-->
 
         <!--Oranges-->
-        <SolidColorBrush x:Key="MyPlateOrange1" Color="#BE7D41"/>
+        <!--<SolidColorBrush x:Key="MyPlateOrange1" Color="#BE7D41"/>
         <SolidColorBrush x:Key="MyPlateOrange2" Color="#8C6432"/>
-        <SolidColorBrush x:Key="MyPlateOrange3" Color="#824B00"/>
+        <SolidColorBrush x:Key="MyPlateOrange3" Color="#824B00"/>-->
 
         <!--Blues-->
-        <SolidColorBrush x:Key="MyPlateBlue1" Color="#4141BE"/>
+        <!--<SolidColorBrush x:Key="MyPlateBlue1" Color="#4141BE"/>
         <SolidColorBrush x:Key="MyPlateBlue2" Color="#32328C"/>
-        <SolidColorBrush x:Key="MyPlateBlue3" Color="#000082"/>
+        <SolidColorBrush x:Key="MyPlateBlue3" Color="#000082"/>-->
 
         <!--Swipes-->
-        <SolidColorBrush x:Key="DeleteSwipeColor" Color="#BE0000"/>
-        <SolidColorBrush x:Key="CompleteSwipeColor" Color="#00BE00"/>
-
-        <!--Quadrant Colors-->
-        <SolidColorBrush x:Key="Quad1Color" Color="#FF0000"/>
-        <SolidColorBrush x:Key="Quad2Color" Color="#00FF00"/>
-        <SolidColorBrush x:Key="Quad3Color" Color="#FF7F00"/>
-        <SolidColorBrush x:Key="Quad4Color" Color="#0000FF"/>
+        <!--<SolidColorBrush x:Key="DeleteSwipeColor" Color="#BE0000"/>
+        <SolidColorBrush x:Key="CompleteSwipeColor" Color="#00BE00"/>-->
     </Application.Resources>
-
 </Application>

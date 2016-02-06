@@ -10,10 +10,17 @@
     d:DesignHeight="400">
 
     <UserControl.Resources>
+        <!--Quadrant Visibility Converter-->
         <local:QuadrantVisibilityConverter x:Key="QuadrantVisibilityConverter"/>
+
+        <!--Quadrant Colors-->
+        <SolidColorBrush x:Key="Quad1Color" Color="#FF0000"/>
+        <SolidColorBrush x:Key="Quad2Color" Color="#00FF00"/>
+        <SolidColorBrush x:Key="Quad3Color" Color="#FF7F00"/>
+        <SolidColorBrush x:Key="Quad4Color" Color="#0000FF"/>
     </UserControl.Resources>
 
-    <Grid Margin="-10,0,0,0">
+    <Grid>
         <!--Visual States-->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowsStates">
@@ -41,7 +48,7 @@
                         <Setter Target="LabelTextBlock.(RelativePanel.Below)" Value="Plate" />
                         <Setter Target="LabelTextBlock.(RelativePanel.AlignHorizontalCenterWith)" Value="Plate" />
                         <Setter Target="LabelTextBlock.Width" Value="55"/>
-                        <Setter Target="RelativePanel.Width" Value="55"/>
+                        <!--<Setter Target="RelativePanel.Width" Value="55"/>-->
                         <Setter Target="RelativePanel.Margin" Value="0,5,0,0"/>
                     </VisualState.Setters>
                 </VisualState>
@@ -53,9 +60,9 @@
                        VerticalAlignment="Top">
             <!--Plate-->
             <Canvas x:Name="Plate"
-                Height="40"
-                Width="40"
-                HorizontalAlignment="Center">
+                    Height="40"
+                    Width="40"
+                    HorizontalAlignment="Center">
                 <Ellipse Fill="Transparent"
                      Height="40"
                      Width="40"
@@ -69,15 +76,15 @@
 
                 <!--Quadrant 1-->
                 <Path Fill="{StaticResource Quad1Color}"
-                  Data="M20,20 L5,20 A15,15 0 0 1 20,5 z"
-                  Visibility="{Binding Quadrant,
-                               Converter={StaticResource QuadrantVisibilityConverter},
-                               ConverterParameter=1}"/>
+                      Data="M20,20 L5,20 A15,15 0 0 1 20,5 z"
+                      Visibility="{Binding Quadrant,
+                                   Converter={StaticResource QuadrantVisibilityConverter},
+                                   ConverterParameter=1}"/>
                 <Path Fill="{StaticResource Quad1Color}"
-                  Data="M0,20 A20,20 0 0 1 20,0 L20,3 A17,17 0 0 0 3,20 z"
-                  Visibility="{Binding Quadrant,
-                               Converter={StaticResource QuadrantVisibilityConverter},
-                               ConverterParameter=1}"/>
+                      Data="M0,20 A20,20 0 0 1 20,0 L20,3 A17,17 0 0 0 3,20 z"
+                      Visibility="{Binding Quadrant,
+                                   Converter={StaticResource QuadrantVisibilityConverter},
+                                   ConverterParameter=1}"/>
 
                 <!--Quadrant 2-->
                 <Path Fill="{StaticResource Quad2Color}"
@@ -114,6 +121,9 @@
                   Visibility="{Binding Quadrant,
                                Converter={StaticResource QuadrantVisibilityConverter},
                                ConverterParameter=4}"/>
+                
+                <!--Selection Circle-->
+                <!--<Path Fill="{StaticResource }"-->
             </Canvas>
 
             <!--Label-->
