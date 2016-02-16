@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SQLite.Net.Attributes;
 
 namespace Plate.Model
@@ -49,6 +45,11 @@ namespace Plate.Model
         /// Gets or sets the quadrant to which this task belongs (1-4)
         /// </summary>
         public int quadrant { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ID that represents the plate to which the task belongs
+        /// </summary>
+        public int plateID { get; set; }
 
         /// <summary>
         /// Gets or sets the reminder flag indicating a reminder attached to the task
