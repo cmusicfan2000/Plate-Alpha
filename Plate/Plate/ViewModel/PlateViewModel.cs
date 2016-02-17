@@ -1,6 +1,7 @@
 ﻿using Windows.UI;
 using SQLite.Net;
 using Plate.Model;
+using System.Linq;
 
 namespace Plate.ViewModel
 {
@@ -35,7 +36,7 @@ namespace Plate.ViewModel
             using (var db = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
             {
                 // Find the plate in the database
-                var _plate = (db.Table<Model.Plate>().Where(p => p.ID == plateID)).Single();
+                var _plate = (db.Table<Model.PlateModel>().Where(p => p.ID == plateID)).Single();
 
                 // Copy values from the database to the instance of the view model
                 plate.ID = _plate.ID;
@@ -50,7 +51,7 @@ namespace Plate.ViewModel
         // ---- //
         // Save //
         // ---- //
-        public string Save(TaskViewModel task)
+        public string Save(PlateViewModel plate)
         {
             // Declare locals
             string result = string.Empty;
@@ -60,43 +61,33 @@ namespace Plate.ViewModel
             {
                 try
                 {
-                    // Retrieve the item from the databaser
-                    var existingTask = (db.Table<Task>().Where(c => c.ID == task.ID)).SingleOrDefault();
+                    // Retrieve the plate from the database
+                    var existingPlate = (db.Table<PlateModel>().Where(p => p.ID == plate.ID)).SingleOrDefault();
 
-                    // IF an existing item was found
+                    // IF an existing plate was found
                     // - Update the information in the database
                     // ELSE
-                    // - Add the task to the database
+                    // - Add the plate to the database
                     // ENDIF
-                    if (existingTask != null)
+                    if (existingPlate != null)
                     {
-                        existingTask.name = task.name;
-                        existingTask.description = task.description;
-                        existingTask.timeToComplete = task.timeToComplete;
-                        existingTask.timeRemaining = task.timeRemaining;
-                        existingTask.progress = task.progress;
-                        existingTask.status = task.status;
-                        existingTask.quadrant = task.quadrant;
-                        existingTask.plateID = task.plateID;
-                        existingTask.reminder = task.reminder;
-                        existingTask.reminderDateTime = task.reminderDateTime;
+                        existingPlate.name = plate.name;
+                        existingPlate.a = plate.color.A;
+                        existingPlate.r = plate.color.R;
+                        existingPlate.g = plate.color.G;
+                        existingPlate.b = plate.color.B;
 
-                        int success = db.Update(existingTask);
+                        int success = db.Update(existingPlate);
                     }
                     else
                     {
-                        int success = db.Insert(new Task()
+                        int success = db.Insert(new PlateModel()
                         {
-                            name = task.name,
-                            description = task.description,
-                            timeToComplete = task.timeToComplete,
-                            timeRemaining = task.timeRemaining,
-                            progress = task.progress,
-                            status = task.status,
-                            quadrant = task.quadrant,
-                            plateID = task.plateID,
-                            reminder = task.reminder,
-                            reminderDateTime = task.reminderDateTime
+                            name = plate.name,
+                            a = plate.color.A,
+                            r = plate.color.R,
+                            g = plate.color.G,
+                            b = plate.color.B
                         });
                     }
 
@@ -117,7 +108,7 @@ namespace Plate.ViewModel
         // ------ //
         // Delete //
         // ------ //
-        public string Delete(int taskID)
+        public string Delete(int plateID)
         {
             // Declare locals
             string result = string.Empty;
@@ -126,24 +117,24 @@ namespace Plate.ViewModel
             using (var dbConn = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
             {
                 // Retrieve a direct connection to the item in the database
-                var existingTask = dbConn.Query<Task>("select * from Task where ID =" + taskID).FirstOrDefault();
+                var existingPlate = dbConn.Query<TaskModel>("select * from PlateModel where ID =" + plateID).FirstOrDefault();
 
                 // IF the task was found
                 // - Attempt to delete it
                 // ENDIF
-                if (existingTask != null)
+                if (existingPlate != null)
                 {
                     dbConn.RunInTransaction(() =>
                     {
                         // Delete the task
-                        dbConn.Delete(existingTask);
+                        dbConn.Delete(existingPlate);
 
                         // IF the task was deleted
                         // - Set the result to "Success"
                         // ELSE
                         // - Set the result to "Failed"
                         // ENDIF
-                        if (dbConn.Delete(existingTask) > 0)
+                        if (dbConn.Delete(existingPlate) > 0)
                         {
                             result = "Success";
                         }

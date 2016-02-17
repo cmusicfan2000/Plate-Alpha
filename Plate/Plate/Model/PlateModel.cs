@@ -2,7 +2,7 @@
 
 namespace Plate.Model
 {
-    class Plate
+    class PlateModel
     {
         /// <summary>
         /// Gets or sets the ID for this plate

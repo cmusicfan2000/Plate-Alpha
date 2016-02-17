@@ -104,8 +104,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Plate.cs" />
-    <Compile Include="Model\Task.cs" />
+    <Compile Include="Model\PlateModel.cs" />
+    <Compile Include="Model\TaskModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\GenericViewModel.cs" />
     <Compile Include="ViewModel\PlateViewModel.cs" />

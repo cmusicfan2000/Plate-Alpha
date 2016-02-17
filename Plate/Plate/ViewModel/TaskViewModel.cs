@@ -173,7 +173,7 @@ namespace Plate.ViewModel
             using (var db = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
             {
                 // Find the task in the database
-                var _task = (db.Table<Task>().Where(c => c.ID == taskID)).Single();
+                var _task = (db.Table<TaskModel>().Where(c => c.ID == taskID)).Single();
 
                 // Copy values from the database to the instance of the view model
                 task.ID = _task.ID;
@@ -207,7 +207,7 @@ namespace Plate.ViewModel
                 try
                 {
                     // Retrieve the item from the databaser
-                    var existingTask = (db.Table<Task>().Where(c => c.ID == task.ID)).SingleOrDefault();
+                    var existingTask = (db.Table<TaskModel>().Where(c => c.ID == task.ID)).SingleOrDefault();
 
                     // IF an existing item was found
                     // - Update the information in the database
@@ -231,7 +231,7 @@ namespace Plate.ViewModel
                     }
                     else
                     {
-                        int success = db.Insert(new Task()
+                        int success = db.Insert(new TaskModel()
                         {
                             name = task.name,
                             description = task.description,
@@ -272,7 +272,7 @@ namespace Plate.ViewModel
             using (var dbConn = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
             {
                 // Retrieve a direct connection to the item in the database
-                var existingTask = dbConn.Query<Task>("select * from Task where ID =" + taskID).FirstOrDefault();
+                var existingTask = dbConn.Query<TaskModel>("select * from TaskModel where ID =" + taskID).FirstOrDefault();
 
                 // IF the task was found
                 // - Attempt to delete it
