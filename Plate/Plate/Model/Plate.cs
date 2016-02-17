@@ -14,5 +14,25 @@ namespace Plate.Model
         /// Gets or sets the name of the plate
         /// </summary>
         public string name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the "a" value of the plate color
+        /// </summary>
+        public byte a { get; set; }
+
+        /// <summary>
+        /// Gets or sets the "r" value of the plate color
+        /// </summary>
+        public byte r { get; set; }
+
+        /// <summary>
+        /// Gets or sets the "g" value of the plate color
+        /// </summary>
+        public byte g { get; set; }
+
+        /// <summary>
+        /// Gets or sets the "b" value of the plate color
+        /// </summary>
+        public byte b { get; set; }
     }
 }

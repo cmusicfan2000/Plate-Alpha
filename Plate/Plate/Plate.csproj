@@ -108,6 +108,7 @@
     <Compile Include="Model\Task.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\GenericViewModel.cs" />
+    <Compile Include="ViewModel\PlateViewModel.cs" />
     <Compile Include="ViewModel\TaskViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
