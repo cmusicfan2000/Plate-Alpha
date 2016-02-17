@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
+using SQLite.Net;
+using Plate.Model;
 
 namespace Plate.ViewModel
 {
@@ -146,6 +145,23 @@ namespace Plate.ViewModel
         }
 
         // ******** //
+        // Plate ID //
+        // ******** //
+        private int _plateID;
+        public int plateID
+        {
+            get { return _plateID; }
+            set
+            {
+                if (_plateID != value)
+                {
+                    _plateID = value;
+                    RaisePropertyChanged("plateID");
+                }
+            }
+        }
+
+        // ******** //
         // Reminder //
         // ******** //
         private bool _reminder;
@@ -176,6 +192,150 @@ namespace Plate.ViewModel
                     _reminderDateTime = value;
                     RaisePropertyChanged("reminderDateTime");
                 }
+            }
+        }
+
+        // --- //
+        // Get //
+        // --- //
+        public TaskViewModel Get(int taskID)
+        {
+            // Declare locals
+            var task = new TaskViewModel();
+
+            // Perform operations inside the database
+            using (var db = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
+            {
+                // Find the task in the database
+                var _task = (db.Table<Task>().Where(c => c.ID == taskID)).Single();
+
+                // Copy values from the database to the instance of the view model
+                task.ID = _task.ID;
+                task.name = _task.name;
+                task.description = _task.description;
+                task.timeToComplete = _task.timeToComplete;
+                task.timeRemaining = _task.timeRemaining;
+                task.progress = _task.progress;
+                task.status = _task.status;
+                task.quadrant = _task.quadrant;
+                task.plateID = _task.plateID;
+                task.reminder = _task.reminder;
+                task.reminderDateTime = _task.reminderDateTime;
+            }
+
+            // Return the found item
+            return task;
+        }
+
+        // ---- //
+        // Save //
+        // ---- //
+        public string Save(TaskViewModel task)
+        {
+            // Declare locals
+            string result = string.Empty;
+
+            // Perform operations inside the database
+            using (var db = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
+            {
+                try
+                {
+                    // Retrieve the item from the databaser
+                    var existingTask = (db.Table<Task>().Where(c => c.ID == task.ID)).SingleOrDefault();
+
+                    // IF an existing item was found
+                    // - Update the information in the database
+                    // ELSE
+                    // - Add the task to the database
+                    // ENDIF
+                    if (existingTask != null)
+                    {
+                        existingTask.name = task.name;
+                        existingTask.description = task.description;
+                        existingTask.timeToComplete = task.timeToComplete;
+                        existingTask.timeRemaining = task.timeRemaining;
+                        existingTask.progress = task.progress;
+                        existingTask.status = task.status;
+                        existingTask.quadrant = task.quadrant;
+                        existingTask.plateID = task.plateID;
+                        existingTask.reminder = task.reminder;
+                        existingTask.reminderDateTime = task.reminderDateTime;
+
+                        int success = db.Update(existingTask);
+                    }
+                    else
+                    {
+                        int success = db.Insert(new Task()
+                        {
+                            name = task.name,
+                            description = task.description,
+                            timeToComplete = task.timeToComplete,
+                            timeRemaining = task.timeRemaining,
+                            progress = task.progress,
+                            status = task.status,
+                            quadrant = task.quadrant,
+                            plateID = task.plateID,
+                            reminder = task.reminder,
+                            reminderDateTime = task.reminderDateTime
+                        });
+                    }
+
+                    // Set the result to success
+                    result = "Success";
+                }
+                catch
+                {
+                    // Set the result to Failed
+                    result = "Failed";
+                }
+            }
+
+            // Return the result
+            return result;
+        }
+
+        // ------ //
+        // Delete //
+        // ------ //
+        public string Delete(int taskID)
+        {
+            // Declare locals
+            string result = string.Empty;
+
+            // Perform operations inside the database
+            using (var dbConn = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
+            {
+                // Retrieve a direct connection to the item in the database
+                var existingTask = dbConn.Query<Task>("select * from Task where ID =" + taskID).FirstOrDefault();
+
+                // IF the task was found
+                // - Attempt to delete it
+                // ENDIF
+                if (existingTask != null)
+                {
+                    dbConn.RunInTransaction(() =>
+                    {
+                        // Delete the task
+                        dbConn.Delete(existingTask);
+
+                        // IF the task was deleted
+                        // - Set the result to "Success"
+                        // ELSE
+                        // - Set the result to "Failed"
+                        // ENDIF
+                        if (dbConn.Delete(existingTask) > 0)
+                        {
+                            result = "Success";
+                        }
+                        else
+                        {
+                            result = "Failed";
+                        }
+                    });
+                }
+
+                // Return the result
+                return result;
             }
         }
 
