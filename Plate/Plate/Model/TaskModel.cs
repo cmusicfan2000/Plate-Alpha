@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite.Net.Attributes;
 
-namespace Model
+namespace Plate.Model
 {
     public class TaskModel
     {

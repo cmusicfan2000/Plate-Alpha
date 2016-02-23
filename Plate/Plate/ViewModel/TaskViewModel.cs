@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.ComponentModel;
 using SQLite.Net;
 using Plate.Model;
 
@@ -8,10 +7,10 @@ namespace Plate.ViewModel
 {
     class TaskViewModel : GenericViewModel
     {
-        // *********** //
-        // Description //
-        // *********** //
         private string _description;
+        /// <summary>
+        /// Gets or sets a description of the task
+        /// </summary>
         public string description
         {
             get { return _description; }
@@ -25,10 +24,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // **************** //
-        // Time To Complete //
-        // **************** //
         private int _timeToComplete;
+        /// <summary>
+        /// Gets or sets the time (in minutes) to complete the task
+        /// </summary>
         public int timeToComplete
         {
             get { return _timeToComplete; }
@@ -42,10 +41,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ************** //
-        // Time Remaining //
-        // ************** //
         private int _timeRemaining;
+        /// <summary>
+        /// Gets or sets the remaining time (in minutes) it will take to complete the task
+        /// </summary>
         public int timeRemaining
         {
             get { return _timeRemaining; }
@@ -59,10 +58,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ******** //
-        // Progress //
-        // ******** //
         private int _progress;
+        /// <summary>
+        /// Gets or sets the progress of the task (1-4)
+        /// </summary>
         public int progress
         {
             get { return _progress; }
@@ -76,10 +75,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ****** //
-        // Status //
-        // ****** //
         private string _status;
+        /// <summary>
+        /// Gets or sets a summary of the current status of the task
+        /// </summary>
         public string status
         {
             get { return _status; }
@@ -93,10 +92,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ******** //
-        // Quadrant //
-        // ******** //
         private int _quadrant;
+        /// <summary>
+        /// Gets or sets the quadrant to which this task belongs (1-4)
+        /// </summary>
         public int quadrant
         {
             get { return _quadrant; }
@@ -110,10 +109,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ******** //
-        // Plate ID //
-        // ******** //
         private int _plateID;
+        /// <summary>
+        /// Gets or sets the ID that represents the plate to which the task belongs
+        /// </summary>
         public int plateID
         {
             get { return _plateID; }
@@ -127,10 +126,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ******** //
-        // Reminder //
-        // ******** //
         private bool _reminder;
+        /// <summary>
+        /// Gets or sets the reminder flag indicating a reminder attached to the task
+        /// </summary>
         public bool reminder
         {
             get { return _reminder; }
@@ -144,10 +143,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ****************** //
-        // Reminder Date Time //
-        // ****************** //
         private DateTime _reminderDateTime;
+        /// <summary>
+        /// Gets or sets the date and time of the reminder (remembers previous setting)
+        /// </summary>
         public DateTime reminderDateTime
         {
             get { return _reminderDateTime; }
@@ -161,9 +160,11 @@ namespace Plate.ViewModel
             }
         }
 
-        // --- //
-        // Get //
-        // --- //
+        /// <summary>
+        /// Retrieves a task with the given ID from the local database as a TaskViewModel
+        /// </summary>
+        /// <param name="taskID"></param>
+        /// <returns></returns>
         public TaskViewModel Get(int taskID)
         {
             // Declare locals
@@ -193,15 +194,17 @@ namespace Plate.ViewModel
             return task;
         }
 
-        // ---- //
-        // Save //
-        // ---- //
+        /// <summary>
+        /// Saves the given task to the local database
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
         public string Save(TaskViewModel task)
         {
             // Declare locals
             string result = string.Empty;
 
-            // Perform operations inside the database
+            // Perform operations inside the local database
             using (var db = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
             {
                 try
@@ -227,6 +230,7 @@ namespace Plate.ViewModel
                         existingTask.reminder = task.reminder;
                         existingTask.reminderDateTime = task.reminderDateTime;
 
+                        // Update the task in the local database
                         int success = db.Update(existingTask);
                     }
                     else
@@ -260,9 +264,11 @@ namespace Plate.ViewModel
             return result;
         }
 
-        // ------ //
-        // Delete //
-        // ------ //
+        /// <summary>
+        /// Removes the task from the local database
+        /// </summary>
+        /// <param name="taskID"></param>
+        /// <returns></returns>
         public string Delete(int taskID)
         {
             // Declare locals

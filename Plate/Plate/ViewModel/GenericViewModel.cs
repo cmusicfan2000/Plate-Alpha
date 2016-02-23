@@ -4,10 +4,10 @@ namespace Plate.ViewModel
 {
     class GenericViewModel
     {
-        // ** //
-        // ID //
-        // ** //
         private int _ID;
+        /// <summary>
+        /// Gets or sets the ID of the item (Generic)
+        /// </summary>
         public int ID
         {
             get { return _ID; }
@@ -21,10 +21,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // **** //
-        // Name //
-        // **** //
         private string _name;
+        /// <summary>
+        /// Gets or sets the name of the item (Generic)
+        /// </summary>
         public string name
         {
             get { return _name; }
@@ -38,10 +38,10 @@ namespace Plate.ViewModel
             }
         }
 
-        // ---------------------- //
-        // Raise Property Changed //
-        // ---------------------- //
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Notifies the system of a change in the given property
+        /// </summary>
         protected virtual void RaisePropertyChanged(string propertyName)
         {
             var handler = this.PropertyChanged;

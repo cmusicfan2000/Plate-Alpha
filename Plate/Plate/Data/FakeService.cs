@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Model;
+using Plate.Model;
 
-namespace Data
+namespace Plate.Data
 {
     /// <summary>
     /// Fake service to simulate data layer to cloud

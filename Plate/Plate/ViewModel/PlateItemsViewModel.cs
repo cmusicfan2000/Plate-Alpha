@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Plate.ViewModel
+namespace ViewModel
 {
     class PlateItemsViewModel : GenericViewModel
     {

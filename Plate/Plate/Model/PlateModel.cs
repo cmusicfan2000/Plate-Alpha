@@ -1,6 +1,6 @@
 ﻿using SQLite.Net.Attributes;
 
-namespace Model
+namespace Plate.Model
 {
     public class PlateModel
     {
