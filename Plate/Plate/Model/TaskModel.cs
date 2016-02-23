@@ -3,7 +3,7 @@ using SQLite.Net.Attributes;
 
 namespace Model
 {
-    class TaskModel
+    public class TaskModel
     {
         /// <summary>
         ///  Gets or sets the identifier

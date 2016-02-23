@@ -1,73 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Model;
 
 namespace Data
 {
-    // ================== //
-    // Task Service Model //
-    // ================== //
-    public class Task
-    {
-        /// <summary>
-        ///  Gets or sets the identifier
-        /// </summary>
-        public int ID { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the task
-        /// </summary>
-        public string name { get; set; }
-
-        /// <summary>
-        /// Gets or sets a description of the task
-        /// </summary>
-        public string description { get; set; }
-
-        /// <summary>
-        /// Gets or sets the time (in minutes) to complete the task
-        /// </summary>
-        public int timeToComplete { get; set; }
-
-        /// <summary>
-        /// Gets or sets the remaining time (in minutes) it will take to complete the task
-        /// </summary>
-        public int timeRemaining { get; set; }
-
-        /// <summary>
-        /// Gets or sets the progress of the task (1-4)
-        /// </summary>
-        public int progress { get; set; }
-
-        /// <summary>
-        /// Gets or sets a summary of the current status of the task
-        /// </summary>
-        public string status { get; set; }
-
-        /// <summary>
-        /// Gets or sets the quadrant to which this task belongs (1-4)
-        /// </summary>
-        public int quadrant { get; set; }
-
-        /// <summary>
-        /// Gets or sets the ID that represents the plate to which the task belongs
-        /// </summary>
-        public int plateID { get; set; }
-
-        /// <summary>
-        /// Gets or sets the reminder flag indicating a reminder attached to the task
-        /// </summary>
-        public bool reminder { get; set; }
-
-        /// <summary>
-        /// Gets or sets the date and time of the reminder (remembers previous setting)
-        /// </summary>
-        public DateTime reminderDateTime { get; set; }
-    }
-
-    // =========================================== //
-    // Fake Servie to simulate data layer to cloud //
-    // =========================================== //
+    /// <summary>
+    /// Fake service to simulate data layer to cloud
+    /// </summary>
     public class FakeService
     {
         /// <summary>
@@ -80,7 +20,7 @@ namespace Data
         /// </summary>
         /// <param name="plateID"></param>
         /// <returns></returns>
-        public static List<Task> GetTasks(int plateID)
+        public static List<TaskModel> GetTasks(int plateID)
         {
             // Output debig code
             Debug.WriteLine("GET tasks for plate");
@@ -88,9 +28,9 @@ namespace Data
             // Return default values
             if (plateID == 0)
             {
-                return new List<Task>()
+                return new List<TaskModel>()
                 {
-                    new Task()
+                    new TaskModel()
                     {
                         name = "Get Gas",
                         description = "I need to get gas for the car",
@@ -102,7 +42,7 @@ namespace Data
                         plateID = 0,
                         reminder = false
                     },
-                    new Task()
+                    new TaskModel()
                     {
                         name = "Do Laundry",
                         description = "I'm running out of clean clothes",
@@ -114,7 +54,7 @@ namespace Data
                         plateID = 0,
                         reminder = false
                     },
-                    new Task()
+                    new TaskModel()
                     {
                         name = "Learn to play Piano",
                         description = "I want to be at intermediate level by the age of 27",
@@ -130,9 +70,9 @@ namespace Data
             }
             else if (plateID == 1)
             {
-                return new List<Task>()
+                return new List<TaskModel>()
                 {
-                    new Task()
+                    new TaskModel()
                     {
                         name = "Contact Client",
                         description = "I need more information from Client",
@@ -145,7 +85,7 @@ namespace Data
                         reminder = true,
                         reminderDateTime = new DateTime(2016, 2, 19, 8, 0, 0)
                     },
-                    new Task()
+                    new TaskModel()
                     {
                         name = "Rewrite Proposal",
                         description = "The boss wants it done by the end of the day",
@@ -157,7 +97,7 @@ namespace Data
                         plateID = 1,
                         reminder = false
                     },
-                    new Task()
+                    new TaskModel()
                     {
                         name = "Work on career plan",
                         description = "Gotta climb the ladder",
@@ -173,9 +113,9 @@ namespace Data
             }
             else
             {
-                return new List<Task>()
+                return new List<TaskModel>()
                 {
-                    new Task()
+                    new TaskModel()
                     {
                         name = "Beat Kingdom Hearts 2",
                         description = "Need to level up to 50 to win",
@@ -195,7 +135,7 @@ namespace Data
         /// Inserts a task into the cloud database
         /// </summary>
         /// <param name="toInsert"></param>
-        public static void Write(Task toInsert)
+        public static void Write(TaskModel toInsert)
         { 
             Debug.WriteLine("INSERT task with name " + toInsert.name); 
         }
@@ -204,7 +144,7 @@ namespace Data
         /// Deletes a task from the cloud database
         /// </summary>
         /// <param name="toDelete"></param>
-        public static void Delete(Task toDelete)
+        public static void Delete(TaskModel toDelete)
         {
             Debug.WriteLine("DELETE person with name " + toDelete.name);
         }
