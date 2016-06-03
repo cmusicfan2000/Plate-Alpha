@@ -1,16 +1,18 @@
-﻿using Windows.UI;
+﻿using Plate.Model;
 using SQLite.Net;
-using Plate.Model;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using Windows.UI;
 
 namespace Plate.ViewModel
 {
     class PlateViewModel : GenericViewModel
     {
-        // ***** //
-        // Color //
-        // ***** //
         private Color _color;
+        /// <summary>
+        /// Gets or sets the color of the plate
+        /// </summary>
         public Color color
         {
             get { return _color; }
@@ -24,9 +26,28 @@ namespace Plate.ViewModel
             }
         }
 
-        // --- //
-        // Get //
-        // --- //
+        private ObservableCollection<TaskViewModel> _tasks;
+        /// <summary>
+        /// Gets or sets the collection of tasks on a plate
+        /// </summary>
+        public ObservableCollection<TaskViewModel> tasks
+        {
+            get
+            {
+                return _tasks;
+            }
+            set
+            {
+                _tasks = value;
+                RaisePropertyChanged("tasks");
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the plate with the given ID from the local database
+        /// </summary>
+        /// <param name="plateID"></param>
+        /// <returns></returns>
         public PlateViewModel Get(int plateID)
         {
             // Declare locals
@@ -36,21 +57,32 @@ namespace Plate.ViewModel
             using (var db = new SQLiteConnection(App.SQLITE_PLATFORM, App.DB_PATH))
             {
                 // Find the plate in the database
-                var _plate = (db.Table<Model.PlateModel>().Where(p => p.ID == plateID)).Single();
+                var _plate = (db.Table<PlateModel>().Where(p => p.ID == plateID)).Single();
 
                 // Copy values from the database to the instance of the view model
                 plate.ID = _plate.ID;
                 plate.name = _plate.name;
                 plate.color = Color.FromArgb(_plate.a, _plate.r, _plate.g, _plate.b);
+
+                plate.tasks = new ObservableCollection<TaskViewModel>()
+
+                List<TaskModel> taskList = (db.Table<TaskModel>().Where(t => t.plateID == plateID)).ToList();
+
+                
+                // the above queary will return a list of Task Models. This list needs to be converted to an
+                //  observable collection of taskViewModels
+                
             }
 
             // Return the found plate
             return plate;
         }
 
-        // ---- //
-        // Save //
-        // ---- //
+        /// <summary>
+        /// Saves changes to the plate with the given ID to the local database
+        /// </summary>
+        /// <param name="plate"></param>
+        /// <returns></returns>
         public string Save(PlateViewModel plate)
         {
             // Declare locals
@@ -105,9 +137,11 @@ namespace Plate.ViewModel
             return result;
         }
 
-        // ------ //
-        // Delete //
-        // ------ //
+        /// <summary>
+        /// Removes the plate with the given ID from the local database
+        /// </summary>
+        /// <param name="plateID"></param>
+        /// <returns></returns>
         public string Delete(int plateID)
         {
             // Declare locals

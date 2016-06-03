@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ViewModel
+namespace Plate.ViewModel
 {
     class PlateItemsViewModel : GenericViewModel
     {
-        // ----- //
-        // Tasks //
-        // ----- //
         private ObservableCollection<TaskViewModel> _tasks;
+        /// <summary>
+        /// Gets or sets the collection of tasks on a plate
+        /// </summary>
         public ObservableCollection<TaskViewModel> tasks
         {
             get
@@ -25,5 +25,7 @@ namespace ViewModel
                 RaisePropertyChanged("tasks");
             }
         }
+
+
     }
 }
